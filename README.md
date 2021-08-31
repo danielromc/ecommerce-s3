@@ -1,2 +1,2 @@
 # ecommerce-s3
-Respositorio e-Commerce Grupo 3 - Desarrollo de Software S38
+Respositorio e-commerce Grupo 3 - Desarrollo de Software S38
