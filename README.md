@@ -13,7 +13,7 @@
      <td>Mario</td>
   </tr>
   <tr>
-     <td>Edwuard</td>
+     <td>Edward</td>
   </tr>
   <tr>   
     <td>Vanesa</td>
