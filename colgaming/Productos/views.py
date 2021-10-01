@@ -6,7 +6,7 @@ from Productos.serializers import *
 class TipoAPI (viewsets.ModelViewSet):
     serializer_class = TipoSerial
     #queryset => objetos que queremos enviar al frontend
-    queryset = TipoJuego.objects.all()
+    queryset = CategoriaJuego.objects.all()
 
 class VideoJuegoAPI (viewsets.ModelViewSet):
     serializer_class = VideoJuegoSerial
