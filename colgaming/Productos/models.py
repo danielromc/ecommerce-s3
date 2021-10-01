@@ -1,10 +1,19 @@
 from django.db import models
+from django.db.models.base import Model
 
 # Create your models here.
 
-class TipoJuego(models.Model):
+
+class Consola(models.Model):
+    nombre= models.CharField(max_length=150)
+    descripcion=models.TextField()
+
+    def __str__(self):
+        return self.nombre
+
+class CategoriaJuego(models.Model):
     nombre = models.CharField(max_length=200)
-    formato = models.CharField(max_length=200)
+    descripcion= models.TextField()
     foto = models.ImageField(null =True, blank=True)
 
     def __str__(self):
@@ -14,15 +23,16 @@ class TipoJuego(models.Model):
     def numProductos(self):
         pass
 
+
 class VideoJuego(models.Model):
     nombre = models.CharField(max_length=200)
-    tipo = models.ForeignKey(TipoJuego, on_delete=models.CASCADE)
-    plataforma = models.CharField(max_length=200)
+    tipo = models.ForeignKey(CategoriaJuego, on_delete=models.CASCADE)
+    plataforma =models.ForeignKey(Consola,on_delete=models.CASCADE)
     precio = models.IntegerField()
     descripcion = models.TextField()
     foto = models.ImageField(blank = True, null=True)
     calificacion = models.FloatField(default=0)
-    marca = models.CharField(max_length=20, default="")
+    fabricante = models.CharField(max_length=20, default="")
     ref = models.CharField(max_length=100, default="")
 
     @property   #=> convierte un método en un atributo
@@ -31,7 +41,7 @@ class VideoJuego(models.Model):
         return TipoSerial(self.tipo).data
 
     def __str__(self):
-        return self.nombre
+        return self.nombre +" - " + str(self.plataforma)
     
     def calcularCalificacion(self):
         pass
@@ -46,4 +56,4 @@ class Comentario(models.Model):
     contenido = models.TextField()
 
     def __str__(self):
-        return self.usuario + " - " + self.producto.nombre   
+        return self.usuario + " - " + str(self.videojuego) 
